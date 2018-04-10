@@ -1,0 +1,110 @@
+#text{
+  color: rgba(0,0,0,0.5);
+}
+
+.form{
+  animation:1s downup 1;
+}
+
+.img-back {
+  height: auto;
+  width: 100%;
+}
+
+  .signin {
+    background-image: linear-gradient(to bottom, rgba(242,74,74,1),rgba(252,70,107,1));
+   height:568px;
+   width:320px;
+   color: white;
+  }
+
+@keyframes downup {
+  0% {
+          opacity:0;
+          transform:translate(0,2.5em);
+  }
+  100%{
+          opacity:1;
+          transform:translate(0em,0em);
+  }
+}
+
+.underline{
+  background-color: rgba(255,255,255,.3);
+  height: .1em;
+  width: 100%;
+}
+
+form {
+    padding:2em;
+}
+
+input[type=email]{
+  background-color: rgba(255,255,255,0);
+    width:100%;
+      border:0;
+   outline: none;
+}
+
+input[type=password]{
+  background-color: rgba(255,255,255,0);
+    width:100%;
+      border:0;
+   outline: none;
+}
+
+input:focus + .underline{
+    transform: 
+      translate(0,-.875em)
+      scaleY(12.5);
+    transition:.1s all;
+}
+
+header {
+  padding:1em;
+}
+
+.a-right {
+  text-align:right;
+}
+
+.enterbutton {
+  font-size: 1.5em;
+}
+
+.up {
+  font-size: 1.25em;
+  font-weight: 700;
+}
+
+
+/*
+
+footer{
+  text-align:center;
+}
+
+
+
+
+input#id:after{
+  background-color: #d8d8d8;
+  width: 100em;
+  height:1em;
+}
+
+footer {
+  bottom:0;
+}
+
+
+.choice {
+  padding: 1.5em;
+}
+
+
+
+#text {
+  transform: rotate(45deg);
+}
+*/
