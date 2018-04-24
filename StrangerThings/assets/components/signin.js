@@ -1,62 +1,49 @@
 import React from 'react';
+import { Font, LinearGradient } from 'expo';
 import { StyleSheet,TextInput, Text, View, Button, Alert } from 'react-native';
+import {
+  StackNavigator,
+} from 'react-navigation';
 
+export default class SigninScreen extends React.Component {
 
+static navigationOptions = { title: 'Signin', header: null };
 
-
-
-class Signin extends React.Component {
-
-	constructor(props) {
+  constructor(props){
     super(props);
-    this.state = {username: null, password: null}
-    this.signin = this.signin.bind(this);
-	};
+    this.state = {email: '', password: ''}
+  }
 
-    signin(){
-		Alert.alert('Username: ' + this.state.username + '\n' + 'Password: ' + this.state.password);
-	}
+  render() {
+    return (
+     <LinearGradient
+    colors={['rgba(242,74,74,1.0)','rgba(252,70,107,1.0)']}
+    style={{padding: '10%',flex: 1}}
+     >
+      <Text style={{fontSize: 50}}>Signin</Text>
 
-	render(){
-		return (
-  <View style={{paddingTop: '30%'}}>
-  	<Text style={{color: '#FFF', fontSize: 24}}>
-  	Username
-  	</Text>
-  	        <TextInput
-          style={{height: 40}}
-          placeholder="Username"
-          onChangeText={(username) => this.setState({username})}
+            <TextInput
+          style={{height: 50, backgroundColor: 'white', marginBottom: '10%'}}
+          placeholder="Email"
+          onChangeText={(email) => this.setState({email})}
         />
-  	<Text style={{color: '#FFF', fontSize: 24}}>
-  	Password
-  	</Text>
-  	  	        <TextInput
-          style={{height: 40}}
+      <TextInput
+          style={{height: 50, backgroundColor: 'white'}}
           placeholder="Password"
           onChangeText={(password) => this.setState({password})}
         />
 
-         <View style={{paddingTop: '10%'}}>
-<Button
-style={{alignItems: 'center'}}
-  onPress={this.signin}
-  title="Boom."
-  color="#FFF"
-/>
-  </View> 
-  </View>
-			);
-	}
+
+              <Button
+          title="Signin"
+          onPress={() => this.props.navigation.navigate('Signin')}
+        />
+
+              <Button
+          title="Signup"
+          onPress={() => this.props.navigation.navigate('Signup')}
+        />
+     </LinearGradient>
+    );
+  }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'rgba(242,74,74,1)',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
-
-export default Signin;
