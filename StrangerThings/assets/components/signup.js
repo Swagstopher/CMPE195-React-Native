@@ -4,12 +4,6 @@ import { StyleSheet,TextInput, Text, ScrollView, View, Button, Alert, DatePicker
 import {
   StackNavigator,
 } from 'react-navigation';
-/*
-class SignupForm extends React.Component {
-  render(){
-    return()
-  }
-}*/
 
 export default class SignupScreen extends React.Component {
 
@@ -17,7 +11,7 @@ static navigationOptions = { title: 'Signup', header: null };
 
   constructor(props){
     super(props);
-    this.state = {date: new Date(), password: '', gender: ''}
+    this.state = {name: '',date: new Date(), password: '', gender: ''}
   }
 
   render() {
@@ -29,12 +23,14 @@ static navigationOptions = { title: 'Signup', header: null };
      >
 
       <Text style={{fontSize: 50}}>Register</Text>
-<ScrollView>
+<ScrollView
+showsVerticalScrollIndicator={false}
+>
 
       <TextInput
           style={{height: 40, backgroundColor: 'white', marginBottom: '10%'}}
           placeholder="Full Name"
-          onChangeText={(text) => this.setState({text})}
+          onChangeText={(name) => this.setState({name})}
         />
       <TextInput
           style={{height: 40, backgroundColor: 'white', marginBottom: '10%'}}
@@ -45,7 +41,7 @@ static navigationOptions = { title: 'Signup', header: null };
           style={{height: 40, backgroundColor: 'white', marginBottom: '10%'}}
           placeholder="Password"
           secureTextEntry={true}
-          onChangeText={(text) => this.setState({text})}
+          onChangeText={(password) => this.setState({password})}
         />
       <TextInput
           style={{height: 40, backgroundColor: 'white', marginBottom: '10%'}}
@@ -77,7 +73,7 @@ static navigationOptions = { title: 'Signup', header: null };
           onPress={() => this.props.navigation.navigate('Signin')}
         />
               <Button title="Make User" onPress={
-              	() => fetch('https://strangerthingz-backend.herokuapp.com/post?username=USERNAME&password=LOL')}/>
+              	() => fetch('https://strangerthingz-backend.herokuapp.com/post?username=' + this.state.name + '&password=' + this.state.password)}/>
 
 
      </LinearGradient>

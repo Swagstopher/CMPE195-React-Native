@@ -36,6 +36,7 @@ static navigationOptions = { title: 'Signin', header: null };
 
               <Button
           title="Signin"
+          color='#000'
           onPress={() => this.props.navigation.navigate('Signin')}
         />
 
