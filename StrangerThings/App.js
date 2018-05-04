@@ -4,6 +4,8 @@ import { StackNavigator } from 'react-navigation';
 import { Font, LinearGradient } from 'expo';
 import SigninScreen from './assets/components/signin.js';
 import SignupScreen from './assets/components/signup.js';
+import MainScreen from './assets/components/main.js';
+
 
 const RootStack = StackNavigator(
   {
@@ -13,6 +15,9 @@ const RootStack = StackNavigator(
     Signup: {
       screen: SignupScreen,
     },
+    Main: {
+      screen: MainScreen,
+    }
   },
   {
     initialRouteName: 'Signin',
