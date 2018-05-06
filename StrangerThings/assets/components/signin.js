@@ -24,13 +24,15 @@ static navigationOptions = { title: 'Signin', header: null };
       <Text style={{fontSize: 48, marginBottom: '10%'}}>SiGN iN</Text>
       </View>
             <TextInput
-          style={{borderRadius: 50,height: 50, fontSize: 16,paddingLeft: '5%', backgroundColor: 'rgba(255,255,255,0.7)', marginBottom: '10%'}}
+          style={{borderRadius: 50,height: 50, fontSize: 16,paddingLeft: '5%', backgroundColor: 'rgba(255,255,255,0)', borderColor: 'rgba(255,255,255,0.7)', borderWidth: 1,marginBottom: '10%'}}
           placeholder="Email"
+          placeholderTextColor='rgba(255,255,255,0.7)'
           onChangeText={(email) => this.setState({email})}
         />
       <TextInput
-          style={{borderRadius: 50,height: 50, fontSize: 16,paddingLeft: '5%', backgroundColor: 'rgba(255,255,255,0.7)'}}
+          style={{borderRadius: 50,height: 50, fontSize: 16,paddingLeft: '5%',  backgroundColor: 'rgba(255,255,255,0)', borderColor: 'rgba(255,255,255,0.7)', borderWidth: 1,marginBottom: '10%'}}
           placeholder="Password"
+          placeholderTextColor='rgba(255,255,255,0.7)'
           secureTextEntry={true}
           onChangeText={(password) => this.setState({password})}
         />
@@ -42,7 +44,7 @@ this.props.navigation.navigate('Main')
 <View style={{alignItems:'center', marginTop: '50%'}}>
         <View style={{width: 120,height: 45,justifyContent: 'center',backgroundColor: 'black', borderRadius: 50, alignItems: 'center'}}>
           <Text onPress={() => 
-fetch('http://strangerthingz-backend.herokuapp.com/authlogin?email=' + EMAIL + '&password=' + PASSWORD)
+fetch('http://strangerthingz-backend.herokuapp.com/authlogin?email=' + this.state.email + '&password=' + this.state.password)
   .then(function(response) {
     if(response.status === 500){
       return {login: false};
@@ -52,14 +54,15 @@ fetch('http://strangerthingz-backend.herokuapp.com/authlogin?email=' + EMAIL + '
   })
   .then(function(myJson) {
     if(myJson.login){
-      this.props.navigation.navigate('Main');
+      Alert.alert('login worked!');
+      () => this.props.navigation.navigate('Main');
     } else {
       Alert.alert('credentials incorrect');
-      this.state.password = '';
-      this.state.email = '';
+      //this.state.password = '';
+      //this.state.email = '';
     }
 
-  });
+  })
  } style={{color: 'white', fontSize: 24}}>Sign In</Text>
         </View>
 </View>

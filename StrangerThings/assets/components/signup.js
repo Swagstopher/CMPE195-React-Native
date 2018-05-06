@@ -11,7 +11,7 @@ static navigationOptions = { title: 'Signup', header: null };
 
   constructor(props){
     super(props);
-    this.state = {name: '',date: new Date(), password: '', gender: null,modalAgeVisible: false, modalGenderVisible: false}
+    this.state = {name: '',email:'',date: new Date(), password: '', reup:'',gender: null,modalAgeVisible: false, modalGenderVisible: false}
   }
 
   setAgeModalVisible(visible) {
@@ -46,8 +46,10 @@ showsVerticalScrollIndicator={false}
           onRequestClose={() => {
             alert('Modal has been closed.');
           }}>
-          <View style={{backgroundColor: 'rgba(255,255,255,0.1)',justifyContent: 'center'}}>
-            <View>
+     <LinearGradient
+    colors={['rgba(242,74,74,1.0)','rgba(252,70,107,1.0)']}
+    style={{padding: '10%',flex: 1, paddingBottom: 0,justifyContent:'center'}}
+     >            <View>
         <Picker
   selectedValue={this.state.gender}
   style={{}}
@@ -65,7 +67,7 @@ showsVerticalScrollIndicator={false}
                 </View>
               </TouchableHighlight>
             </View>
-          </View>
+          </LinearGradient>
         </Modal>
 
         <Modal
@@ -75,8 +77,10 @@ showsVerticalScrollIndicator={false}
           onRequestClose={() => {
             alert('Modal has been closed.');
           }}>
-          <View style={{backgroundColor: 'rgba(255,255,255,0.1)',justifyContent: 'center'}}>
-            <View>
+     <LinearGradient
+    colors={['rgba(242,74,74,1.0)','rgba(252,70,107,1.0)']}
+    style={{padding: '10%',flex: 1, paddingBottom: 0,justifyContent:'center'}}   >        
+    <View>
         <DatePickerIOS
         mode='date'
           date={this.state.date}
@@ -91,18 +95,19 @@ showsVerticalScrollIndicator={false}
                 </View>
               </TouchableHighlight>
             </View>
-          </View>
+          </LinearGradient>
         </Modal>
-
+{/*
       <TextInput
           style={{marginTop:'10%',borderRadius: 50,height: 50, fontSize: 16,paddingLeft: '5%', backgroundColor: 'rgba(255,255,255,0.7)', marginBottom: '10%'}}
           placeholder="Full Name"
           onChangeText={(name) => this.setState({name})}
         />
+        */}
       <TextInput
           style={{borderRadius: 50,height: 50, fontSize: 16,paddingLeft: '5%', backgroundColor: 'rgba(255,255,255,0.7)', marginBottom: '10%'}}
           placeholder="Email"
-          onChangeText={(text) => this.setState({text})}
+          onChangeText={(email) => this.setState({email})}
         />
               <TextInput
           style={{borderRadius: 50,height: 50, fontSize: 16,paddingLeft: '5%', backgroundColor: 'rgba(255,255,255,0.7)', marginBottom: '10%'}}
@@ -114,7 +119,7 @@ showsVerticalScrollIndicator={false}
           style={{borderRadius: 50,height: 50, fontSize: 16,paddingLeft: '5%', backgroundColor: 'rgba(255,255,255,0.7)', marginBottom: '10%'}}
           placeholder="Retype Password"
           secureTextEntry={true}
-          onChangeText={(text) => this.setState({text})}
+          onChangeText={(reup) => this.setState({reup})}
         />
         <View style={{alignItems: 'center'}}>
         <Text onPress={() => {
@@ -133,7 +138,20 @@ showsVerticalScrollIndicator={false}
           onPress={() => this.props.navigation.navigate('Signin')}
         />
               <Button title="Make User" onPress={
-              	() => fetch('https://strangerthingz-backend.herokuapp.com/authpost?email=' + this.state.name + '&password=' + this.state.password)}/>
+                () => {
+                if(this.state.password != this.state.reup){
+                  Alert.alert('Both Password Entries arent the same');
+                } else {
+                  fetch('https://strangerthingz-backend.herokuapp.com/authpost?email=' + this.state.email + '&password=' + this.state.password)
+                  .then((response) => response.text()
+                  
+                  )
+                }
+                }
+                }
+
+                
+                />
 
 
      </LinearGradient>
